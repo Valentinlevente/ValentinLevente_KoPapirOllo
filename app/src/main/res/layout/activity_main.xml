@@ -12,10 +12,86 @@
         android:gravity="center"
         android:orientation="vertical"
         >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
 
-        <ImageView
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/heart2"
+                    android:id="@+id/gepElet1_img"
+                    />
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/heart2"
+                    android:id="@+id/gepElet2_img"/>
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/heart2"
+                    android:id="@+id/gepElet3_img"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gép"
+                    android:textSize="26sp"
+                    android:layout_margin="10dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Játékos"
+                    android:textSize="26sp"
+                    android:layout_margin="10dp"
+                    />
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/heart2"
+                    android:id="@+id/emberElet1_img"
+                    />
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/heart2"
+                    android:id="@+id/emberElet2_img"/>
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/heart2"
+                    android:id="@+id/emberElet3_img"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="28sp"
+            android:text="Döntetlenek száma: 0"
+            android:id="@+id/dontetlen_txt"
+            />
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:src="@drawable/rock"
             android:id="@+id/teValasztasod_img"
             />
@@ -26,8 +102,8 @@
             android:textSize="28sp"
             />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
             android:src="@drawable/rock"
             android:id="@+id/gepValasztasa_img"
             />
@@ -36,12 +112,7 @@
             android:layout_height="wrap_content"
             android:text="A gép választása"
             android:textSize="28sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Eredmény: Ember:0 Computer:0"
-            android:textSize="26sp"
-            android:id="@+id/eredmeny_txt"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,37 +120,32 @@
             android:orientation="horizontal"
             android:gravity="center">
 
-            <Button
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kő"
                 android:id="@+id/ko_btn"
                 android:textSize="20sp"
                 android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/grey"
-                android:textColor="@color/black"
+                android:src="@drawable/rock"
                 />
-            <Button
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Papír"
                 android:id="@+id/papir_btn"
                 android:textSize="20sp"
                 android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/grey"
-                android:textColor="@color/black"/>
-            <Button
+                android:src="@drawable/paper"
+                />
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Olló"
                 android:id="@+id/ollo_btn"
                 android:textSize="20sp"
                 android:layout_weight="1"
-                android:layout_margin="10dp"
-                android:backgroundTint="@color/grey"
-                android:textColor="@color/black"/>
+                android:src="@drawable/scissors"/>
 
         </LinearLayout>
 

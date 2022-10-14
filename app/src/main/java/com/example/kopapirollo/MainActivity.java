@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,14 +17,24 @@ public class MainActivity extends AppCompatActivity {
     private ImageView teValasztasod_img;
     private ImageView gepValasztasa_img;
     private TextView eredmeny_txt;
-    private Button ko_btn;
-    private Button papir_btn;
-    private Button ollo_btn;
-    private int ember = 0;
-    private int gep = 0;
+    private ImageView ko_btn;
+    private ImageView papir_btn;
+    private ImageView ollo_btn;
+    private int emberElet = 3;
+    private int gepElet = 3;
     private int emberValasztasa;
     private int gepValasztasa;
     private AlertDialog.Builder builder;
+    private TextView dontetlen_txt;
+    private ImageView gepElet1_img;
+    private ImageView gepElet2_img;
+    private ImageView gepElet3_img;
+    private ImageView emberElet1_img;
+    private ImageView emberElet2_img;
+    private ImageView emberElet3_img;
+    private ImageView[] gepEletTomb_img;
+    private ImageView[] emberEletTomb_img;
+    private int dontetlenekSzama = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +50,19 @@ public class MainActivity extends AppCompatActivity {
 
         teValasztasod_img = findViewById(R.id.teValasztasod_img);
         gepValasztasa_img = findViewById(R.id.gepValasztasa_img);
-        eredmeny_txt = findViewById(R.id.eredmeny_txt);
         ko_btn = findViewById(R.id.ko_btn);
         papir_btn = findViewById(R.id.papir_btn);
         ollo_btn = findViewById(R.id.ollo_btn);
         builder = new AlertDialog.Builder(MainActivity.this);
+        dontetlen_txt = findViewById(R.id.dontetlen_txt);
+        gepElet1_img = findViewById(R.id.gepElet1_img);
+        gepElet2_img = findViewById(R.id.gepElet2_img);
+        gepElet3_img = findViewById(R.id.gepElet3_img);
+        emberElet1_img = findViewById(R.id.emberElet1_img);
+        emberElet2_img = findViewById(R.id.emberElet2_img);
+        emberElet3_img = findViewById(R.id.emberElet3_img);
+        gepEletTomb_img = new ImageView[] {gepElet1_img, gepElet2_img, gepElet3_img};
+        emberEletTomb_img = new ImageView[] {emberElet1_img, emberElet2_img, emberElet3_img};
 
     }
     private void addListener(){
@@ -129,19 +146,22 @@ public class MainActivity extends AppCompatActivity {
 
         if(dontetlen){
             Toast.makeText(MainActivity.this, "Döntetlen", Toast.LENGTH_SHORT).show();
+            dontetlenekSzama++;
+            dontetlen_txt.setText("Döntetlenek száma: " + String.valueOf(dontetlenekSzama));
         }
         else if(emberNyerte){
-            ember++;
+            gepElet--;
             Toast.makeText(MainActivity.this, "Nyertél", Toast.LENGTH_SHORT).show();
+            gepEletTomb_img[gepElet].setImageResource(R.drawable.heart1);
         }else{
-            gep++;
+            emberElet--;
             Toast.makeText(MainActivity.this, "Vesztettél", Toast.LENGTH_SHORT).show();
+            emberEletTomb_img[emberElet].setImageResource(R.drawable.heart1);
         }
 
-        eredmeny_txt.setText("Eredmény: Ember:" + String.valueOf(ember) + " Computer:" + String.valueOf(gep));
 
-        if(gep >= 3 || ember >= 3){
-            if(gep > ember){
+        if(gepElet == 0 || emberElet == 0){
+            if(gepElet > emberElet){
 
                 builder.setTitle("Vesztettél!");
 
@@ -157,14 +177,22 @@ public class MainActivity extends AppCompatActivity {
             });
             builder.setPositiveButton("Igen", new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    ember = 0;
-                    gep = 0;
-                    eredmeny_txt.setText("Eredmény: Ember:" + String.valueOf(ember) + " Computer:" + String.valueOf(gep));
+                public void onClick(DialogInterface dialogInterface, int which) {
+                    emberElet = 3;
+                    gepElet = 3;
+                    dontetlenekSzama = 0;
                     gepValasztasa_img.setImageResource(R.drawable.rock);
                     teValasztasod_img.setImageResource(R.drawable.rock);
+                    for (int i = 0; i < gepEletTomb_img.length; i++){
+                        gepEletTomb_img[i].setImageResource(R.drawable.heart2);
+                    }
+                    for (int i = 0; i < emberEletTomb_img.length; i++){
+                        emberEletTomb_img[i].setImageResource(R.drawable.heart2);
+                    }
+                    dontetlen_txt.setText("Döntetlenek száma: " + String.valueOf(dontetlenekSzama));
                 }
             });
+            builder.setCancelable(false);
             builder.create().show();
         }
 
